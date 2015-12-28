@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="xposedbridge">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/xposedbridge.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
