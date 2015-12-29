@@ -39,7 +39,7 @@ public class JavaHooker implements IXposedHookLoadPackage{
             CommandReceiver.initCommand(sContext);
         }
 
-        XposedHelpers.findAndHookConstructor(Application.class, "attach", Context.class, new XC_MethodHook() {
+        XposedHelpers.findAndHookMethod(Application.class, "attach", Context.class, new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                 if (param.args != null && param.args.length != 0) {
