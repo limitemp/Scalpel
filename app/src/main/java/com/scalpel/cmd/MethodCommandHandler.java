@@ -89,6 +89,11 @@ public class MethodCommandHandler {
                 builder.append("+++++++++++beforeHookedMethod+++++++++++");
                 builder.append('\n');
                 for (Object arg : param.args) {
+                    if (arg == null) {
+                        builder.append("null");
+                        builder.append('\n');
+                        continue;
+                    }
                     FieldCommandHandler.combineMethod(arg);
                     builder.append(arg.toString());
                     builder.append('\n');
@@ -113,6 +118,11 @@ public class MethodCommandHandler {
                 builder.append("+++++++++++afterHookedMethod+++++++++++");
                 builder.append('\n');
                 for (Object arg : param.args) {
+                    if (arg == null) {
+                        builder.append("null");
+                        builder.append('\n');
+                        continue;
+                    }
                     FieldCommandHandler.combineMethod(arg);
                     builder.append(arg.toString());
                     builder.append('\n');
