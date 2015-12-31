@@ -8,6 +8,7 @@ public class MethodEntity {
     public String methodName;
 
     public boolean hookConstructor;
+    public boolean showStack;
 
     public MethodEntity(String className) {
         this.className = className;
@@ -21,6 +22,7 @@ public class MethodEntity {
         MethodEntity entity = (MethodEntity) o;
 
         if (hookConstructor != entity.hookConstructor) return false;
+        if (showStack != entity.showStack) return false;
         if (className != null ? !className.equals(entity.className) : entity.className != null)
             return false;
         return methodName != null ? methodName.equals(entity.methodName) : entity.methodName == null;

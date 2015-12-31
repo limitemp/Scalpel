@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.scalpel.entity.FieldEntity;
 import com.scalpel.java.JavaHooker;
 import com.scalpel.log.KLog;
+import com.scalpel.log.StrUtil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -76,7 +77,7 @@ public class FieldCommandHandler {
                 if (fieldObj != null) {
                     KLog.output(entity.fieldName + " ------------->>>>>");
                     KLog.output("type: "+fieldObj.getClass().getName());
-                    KLog.output("value: " + fieldObj.toString());
+                    KLog.output("value: " + StrUtil.toString(fieldObj));
                     KLog.output(entity.fieldName + " <<<<<<-------------");
                 }
             }

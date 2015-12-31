@@ -18,6 +18,7 @@ public class CommandParser {
     private static final String KEY_CLASS_NAME = "class";
     private static final String KEY_METHOD_NAME = "method";
     private static final String KEY_HOOK_CONSTRUCTOR = "constructor";
+    private static final String KEY_SHOW_STACK = "stack";
 
     private static final String KEY_ACTION_FIELD = "field";
     private static final String KEY_FIELD_STATIC = "static";
@@ -37,6 +38,7 @@ public class CommandParser {
                 MethodEntity entity = new MethodEntity(className);
                 entity.methodName = jsonObject.optString(KEY_METHOD_NAME);
                 entity.hookConstructor = jsonObject.optBoolean(KEY_HOOK_CONSTRUCTOR);
+                entity.showStack = jsonObject.optBoolean(KEY_SHOW_STACK);
                 MethodCommandHandler.handleCommand(entity);
             } else if (TextUtils.equals(action, KEY_ACTION_FIELD)) {
                 String className = jsonObject.optString(KEY_CLASS_NAME);
