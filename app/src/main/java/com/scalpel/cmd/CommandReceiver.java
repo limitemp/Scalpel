@@ -7,8 +7,6 @@ import android.content.IntentFilter;
 import android.os.Process;
 import android.text.TextUtils;
 
-import com.scalpel.log.KLog;
-
 /**
  * Author: Mrchen on 15/12/26.
  */
@@ -47,7 +45,6 @@ public class CommandReceiver extends BroadcastReceiver{
         if (pid == Process.myPid()) {
             String cmd = intent.getStringExtra(KEY_CMD);
             if (!TextUtils.isEmpty(cmd)) {
-                KLog.output("the cmd: "+cmd);
                 CommandParser.parser(cmd);
             }
         }

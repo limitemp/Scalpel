@@ -28,8 +28,8 @@ public class JavaHooker implements IXposedHookLoadPackage{
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
         KLog.sProcessName = loadPackageParam.processName;
-        KLog.i(TAG, "[method: handleLoadPackage ] " + ": "+loadPackageParam.packageName);
-        if (TextUtils.equals("system_server", loadPackageParam.processName)) {
+        KLog.output("load in "+loadPackageParam.packageName);
+        if (TextUtils.equals("android", loadPackageParam.packageName)) {
             mIsSystemServer = true;
         }
         sClassLoader = loadPackageParam.classLoader;
@@ -44,11 +44,13 @@ public class JavaHooker implements IXposedHookLoadPackage{
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                 if (param.args != null && param.args.length != 0) {
                     sContext = (Context) param.args[0];
+//                    KLog.i(TAG, "init command suit: "+ Process.myPid());
                     CommandReceiver.initCommand(sContext);
                 }
                 super.afterHookedMethod(param);
             }
         });
+
     }
 
     public static Context getContext() {

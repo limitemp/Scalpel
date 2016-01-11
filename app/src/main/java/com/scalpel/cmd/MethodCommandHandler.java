@@ -27,6 +27,7 @@ public class MethodCommandHandler {
             KLog.output("MethodCommandHandle: nothing to do !");
             return;
         }
+        KLog.output(entity.toString());
         Class<?> hookClass = null;
         try {
             hookClass = JavaHooker.getClassLoader().loadClass(entity.className);
@@ -43,15 +44,21 @@ public class MethodCommandHandler {
         }
 
         if (!TextUtils.isEmpty(entity.methodName)) {
+            boolean found = false;
             for (Method method : hookClass.getDeclaredMethods()) {
                 if (TextUtils.equals(method.getName(), entity.methodName)) {
-                    sHookedMethodMap.put(method, entity);
+                    found = true;
                     if (!sHookedMethodMap.containsKey(method)) {
                         XposedBridge.hookMethod(method, new MethodHook(method));
                     }
+                    sHookedMethodMap.put(method, entity);
                 }
             }
-            KLog.output("hook "+entity.className+"#"+entity.methodName+" done");
+            if (found) {
+                KLog.output("hook "+entity.className+"#"+entity.methodName+" done");
+            }else {
+                KLog.output("can not found the method "+entity.className+"#"+entity.methodName);
+            }
         }
 
         if (entity.hookConstructor) {
@@ -106,6 +113,12 @@ public class MethodCommandHandler {
             KLog.output(builder.toString());
 
             FieldCommandHandler.combineMethod(param.thisObject);
+
+            if (entity.hijack) {
+                KLog.i(TAG, "[method: beforeHookedMethod ] " + "hijack the method, return: " +
+                        (entity.result == null ? "null" : entity.result.toString()));
+                param.setResult(entity.result);
+            }
             super.beforeHookedMethod(param);
         }
 
