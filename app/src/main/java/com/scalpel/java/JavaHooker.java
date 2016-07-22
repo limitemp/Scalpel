@@ -36,6 +36,10 @@ public class JavaHooker implements IXposedHookLoadPackage{
         if (mIsSystemServer) {
             Class<?> activityThreadClass = loadPackageParam.classLoader.loadClass("android.app.ActivityThread");
             sContext = (Context) XposedHelpers.getStaticObjectField(activityThreadClass, "mSystemContext");
+            if (sContext == null) {
+                KLog.output("cant not get system context");
+                return;
+            }
             CommandReceiver.initCommand(sContext);
         }
 

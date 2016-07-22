@@ -20,7 +20,9 @@ import de.robv.android.xposed.XposedHelpers;
 public class FieldCommandHandler {
     public static Set<FieldEntity> sFiledSet = new HashSet<FieldEntity>();
 
+    private static int contortion;
     public static void handleCommand(FieldEntity entity) {
+        contortion = 0;
         Class<?> hookClass = null;
         try {
             hookClass = JavaHooker.getClassLoader().loadClass(entity.className);

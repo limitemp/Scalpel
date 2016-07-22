@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/Mrchen/Documents/github/Scalpel/app/libs/xposedbridge.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="40e849fd7c0a7b6ac85354597a79770dc3203172">
+        <dex dex="/Users/Mrchen/Documents/github/Scalpel/app/build/intermediates/pre-dexed/debug/xposedbridge-9c4403a7cbf039cf23ad67f719321c45de1d72a1.jar" />
+    </item>
+
+</items>
